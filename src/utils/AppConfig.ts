@@ -5,5 +5,5 @@ export const AppConfig = {
   title: 'Nextjs Starter',
   description: 'Starter code for your Nextjs Boilerplate with Tailwind CSS',
   locale: 'en',
-  api_endpoint: 'http://localhost:1337',
+  api_endpoint: 'http://54.91.167.122:1337',
 };

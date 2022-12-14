@@ -1,6 +1,5 @@
 import { AppConfig } from '@/utils/AppConfig';
 import axios from 'axios';
-import { useRouter } from 'next/router'
 
 export class PackagesApi {
   async getAll() {

@@ -1,0 +1,35 @@
+import { AppConfig } from '@/utils/AppConfig';
+import axios from 'axios';
+
+export class ServiceApi {
+  async getAll() {
+    var v = await axios.get(AppConfig.api_endpoint + '/api/services');
+    var blogs = v.data.data;
+    const result = blogs.map( (d:any) => {
+      let v = new Service();
+      v.slug = d.attributes.slug;
+      v.label = d.attributes.label;
+      return v;
+    })
+    return result;
+  }
+
+  async findOne(slug: string) {
+    var v = await axios.get(AppConfig.api_endpoint + '/api/service/findOne/' + slug);
+    var blogs = v.data.service;
+    var result = new Service();
+    result.label = blogs.label;
+    result.slug = blogs.slug;
+    result.desc = blogs.desc;
+    result.detail = blogs.detail;
+    return result;
+  }
+}
+
+class Service {
+  label!: string;
+  slug!: string;
+  desc!: string;
+  price!: string;
+  detail!: string;
+}

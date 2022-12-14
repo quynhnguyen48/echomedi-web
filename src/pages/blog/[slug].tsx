@@ -17,9 +17,8 @@ export const getStaticPaths: GetStaticPaths<IBlogUrl> = async () => {
   const json = await new BlogApi().getAll();
   // assuming using axios
   const blogs = json;
-  console.log('blogs', blogs)
   return {
-    paths: blogs.map((v: any, index: any) => ({
+    paths: blogs.map((v: any) => ({
       params: { slug: v.slug},
     })),
     fallback: true,

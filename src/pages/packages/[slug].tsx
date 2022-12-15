@@ -18,13 +18,13 @@ type IBlogUrl = {
   image_url: string;
 };
 
-export const getStaticPaths: GetStaticPaths<IBlogUrl> = async (context) => {
+export const getStaticPaths: GetStaticPaths<IBlogUrl> = async () => {
   const json = await new PackagesApi().getAll();
   const blogs = json;
-  let paths = blogs.map((v: any, index: any) => ({
+  let paths = blogs.map((v: any) => ({
     params: { slug: v.slug }, locale: "en"
   }));
-  paths = paths.concat(blogs.map((v: any, index: any) => ({
+  paths = paths.concat(blogs.map((v: any) => ({
     params: { slug: v.slug }, locale: "vi"
   })));
   return {
@@ -55,7 +55,7 @@ export const getStaticProps: GetStaticProps<IBlogUrl, IBlogUrl> = async ({
 
 const Blog = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <Main meta={<Meta title={props.slug} description="Lorem ipsum" />}>
+    <Main meta={<Meta title={props.label} description="Lorem ipsum" />}>
       <div className="pb-8 relative h-96">
         <img src={AppConfig.api_endpoint +  props.image_url} alt="me" className='object-cover w-full h-full h-48 relative'/>
       </div>

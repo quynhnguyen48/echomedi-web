@@ -109,7 +109,7 @@ function MyApp({ }: {}) {
   const router = useRouter();
   let { locale } = useRouter();
   locale = locale ?? "";
-
+  console.log('local', locale)
   return (
     <div className='w-full'>
       <header className="flex items-center p-5 justify-around	">
@@ -284,7 +284,8 @@ function MyApp({ }: {}) {
           </div>
           <ul className="flex">
             <li className="inline mr-2 cursor-pointer" onClick={() => {
-              router.push(router.asPath, router.asPath, { locale: "en" })
+              router.push(router.asPath, router.asPath, { locale: "en" });
+              console.log('asd')
             }}>          <Image src="/uk.png" width={25} height={25} alt="me" className="ml-2" />
             </li>
             <li className="inline cursor-pointer" onClick={() => {

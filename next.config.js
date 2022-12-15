@@ -7,6 +7,11 @@ module.exports = withBundleAnalyzer({
   eslint: {
     dirs: ['.'],
   },
+  i18n: {
+    locales: ['en', 'vi'],
+    defaultLocale: 'vi',
+    localeDetection: true,
+  },
   poweredByHeader: false,
   trailingSlash: true,
   basePath: '',

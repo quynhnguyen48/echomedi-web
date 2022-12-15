@@ -7,11 +7,6 @@ module.exports = withBundleAnalyzer({
   eslint: {
     dirs: ['.'],
   },
-  i18n: {
-    locales: ['en', 'vi'],
-    defaultLocale: 'vi',
-    localeDetection: true,
-  },
   poweredByHeader: false,
   trailingSlash: true,
   basePath: '',
@@ -19,4 +14,14 @@ module.exports = withBundleAnalyzer({
   // So, the source code is "basePath-ready".
   // You can remove `basePath` if you don't need it.
   reactStrictMode: true,
+  exportPathMap: async function(
+    defaultPathMap,
+    { dev, dir, outDir, distDir, buildId }
+  ) {
+    return {
+      "/": { page: "/" },
+      "/menu": { page: "/menu" },
+      "/about": { page: "/about" }
+    };
+  }
 });

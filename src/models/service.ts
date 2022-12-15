@@ -18,10 +18,17 @@ export class ServiceApi {
     var v = await axios.get(AppConfig.api_endpoint + '/api/service/findOne/' + slug);
     var blogs = v.data.service;
     var result = new Service();
-    result.label = blogs.label;
-    result.slug = blogs.slug;
-    result.desc = blogs.desc;
-    result.detail = blogs.detail;
+    if (blogs) {
+      result.label = blogs.label;
+      result.slug = blogs.slug;
+      result.desc = blogs.desc;
+      result.detail = blogs.detail;
+    } else {
+      result.label = "";
+      result.slug = "";
+      result.desc = "";
+      result.detail = "";
+    }
     return result;
   }
 }

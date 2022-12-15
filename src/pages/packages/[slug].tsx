@@ -1,5 +1,4 @@
 import type {
-  GetStaticPaths,
   GetStaticProps,
   InferGetStaticPropsType,
 } from 'next';
@@ -24,6 +23,7 @@ const tranlsate = (s: string, locale: string | undefined) => {
       else 
         return "Tìm hiểu thêm";        
   }
+  return "";
 }
 
 type IBlogUrl = {
@@ -71,7 +71,7 @@ type IBlogUrl = {
 
 export const getServerSideProps: GetStaticProps<IBlogUrl, IBlogUrl> = async ({
   params,
-  locale
+  locale,
 }) => {
   let slug = params!.slug;
   if (locale == "en") {

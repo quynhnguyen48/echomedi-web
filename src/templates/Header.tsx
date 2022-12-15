@@ -102,6 +102,7 @@ const tranlsate = (s: string, locale: string) => {
       else
         return "Gói Xét Nghiệm Di Truyền";
   }
+  return "";
 }
 
 function MyApp({ }: {}) {

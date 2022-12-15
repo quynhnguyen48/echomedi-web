@@ -34,22 +34,42 @@ type IBlogUrl = {
   image_url: string;
 };
 
-export const getStaticPaths: GetStaticPaths<IBlogUrl> = async () => {
-  const json = await new PackagesApi().getAll();
-  const blogs = json;
-  let paths = blogs.map((v: any) => ({
-    params: { slug: v.slug }, locale: "en"
-  }));
-  paths = paths.concat(blogs.map((v: any) => ({
-    params: { slug: v.slug }, locale: "vi"
-  })));
-  return {
-    paths,
-    fallback: true,
-  };
-};
+// export const getStaticPaths: GetStaticPaths<IBlogUrl> = async () => {
+//   const json = await new PackagesApi().getAll();
+//   const blogs = json;
+//   let paths = blogs.map((v: any) => ({
+//     params: { slug: v.slug }, locale: "en"
+//   }));
+//   paths = paths.concat(blogs.map((v: any) => ({
+//     params: { slug: v.slug }, locale: "vi"
+//   })));
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// };
 
-export const getStaticProps: GetStaticProps<IBlogUrl, IBlogUrl> = async ({
+// export const getStaticProps: GetStaticProps<IBlogUrl, IBlogUrl> = async ({
+//   params,
+//   locale
+// }) => {
+//   let slug = params!.slug;
+//   if (locale == "en") {
+//     slug = slug + "-en";
+//   }
+//   const data = await new PackagesApi().findOne(slug);
+//   return {
+//     props: {
+//       slug: data!.slug,
+//       label: data!.label,
+//       sub_packages: data.sub_packages,
+//       desc: data.desc,
+//       image_url: data.image_url,
+//     },
+//   };
+// };
+
+export const getServerSideProps: GetStaticProps<IBlogUrl, IBlogUrl> = async ({
   params,
   locale
 }) => {
@@ -67,9 +87,9 @@ export const getStaticProps: GetStaticProps<IBlogUrl, IBlogUrl> = async ({
       image_url: data.image_url,
     },
   };
-};
+}
 
-const Blog = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Blog = (props: InferGetStaticPropsType<typeof getServerSideProps>) => {
   let { locale } = useRouter();
   locale = locale ?? "";
   return (

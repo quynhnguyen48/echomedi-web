@@ -20,7 +20,7 @@ export const getStaticPaths: GetStaticPaths<IBlogUrl> = async () => {
   const json = await new PackagesApi().getAll();
   const blogs = json;
   return {
-    paths: blogs.map((v: any, index: any) => ({
+    paths: blogs.map((v: any) => ({
       params: { slug: v.slug, label: v.label },
     })),
     fallback: true,

@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 const tranlsate = (s: string, locale: string) => {
-  let result = "";
   switch (s) {
     case "about_em":
       if (locale === "en")
@@ -27,98 +26,82 @@ const tranlsate = (s: string, locale: string) => {
         return "Pharmacy";
       else
         return "Nhà Thuốc";
-    // @ts-ignore
     case "in_clinic_service":
       if (locale === "en")
-        result = "In-Clinic Services";
+        return "In-Clinic Services";
       else
-        result = "Dịch Vụ Tại Phòng Khám";
-
-    // @ts-ignore
+        return "Dịch Vụ Tại Phòng Khám";
     case "preventive_care":
       if (locale === "en")
-        result = "Preventive Care";
+        return "Preventive Care";
       else
-        result = "Chăm Sóc Phòng Ngừa";
-    // @ts-ignore
+        return "Chăm Sóc Phòng Ngừa";
     case "primary_care":
       if (locale === "en")
-        result = "Primary Care";
+        return "Primary Care";
       else
-        result = "Điều Trị Ban Đầu";
-    // @ts-ignore
+        return "Điều Trị Ban Đầu";
     case "on_going_care":
       if (locale === "en")
-        result = "On-Going Care";
+        return "On-Going Care";
       else
-        result = "Quản Lý Bệnh Mạn Tính";
-    // @ts-ignore
+        return "Quản Lý Bệnh Mạn Tính";
     case "wellness":
       if (locale === "en")
-        result = "Wellness";
+        return "Wellness";
       else
-        result = "Sức Khoẻ Toàn Diện";
-    // @ts-ignore
+        return "Sức Khoẻ Toàn Diện";
     case "home_service":
       if (locale === "en")
-        result = "Home Services";
+        return "Home Services";
       else
-        result = "Dịch Vụ Tại Nhà";
-    // @ts-ignore
+        return "Dịch Vụ Tại Nhà";
     case "home_visits":
       if (locale === "en")
-        result = "Home Visits";
+        return "Home Visits";
       else
-        result = "Chăm Sóc Tại Nhà";
-    // @ts-ignore
+        return "Chăm Sóc Tại Nhà";
     case "telemedicine":
       if (locale === "en")
-        result = "Telemedicine";
+        return "Telemedicine";
       else
-        result = "Chăm Sóc Từ Xa";
-    // @ts-ignore
+        return "Chăm Sóc Từ Xa";
     case "vn_resident":
       if (locale === "en")
-        result = "For Residents in Vietnam";
+        return "For Residents in Vietnam";
       else
-        result = "Khách Hàng Tại Việt Nam";
-    // @ts-ignore
+        return "Khách Hàng Tại Việt Nam";
     case "non_vn_resident":
       if (locale === "en")
-        result = "For Non-Residents (Overseas Vietnamese)";
+        return "For Non-Residents (Overseas Vietnamese)";
       else
-        result = "Việt Kiều Ở Nước Ngoài";
-    // @ts-ignore
+        return "Việt Kiều Ở Nước Ngoài";
     case "preventive_care_package":
       if (locale === "en")
-        result = "Preventive Care Packages";
+        return "Preventive Care Packages";
       else
-        result = "Gói Chăm Sóc Phòng Ngừa";
-    // @ts-ignore
+        return "Gói Chăm Sóc Phòng Ngừa";
     case "primary_care_package":
       if (locale === "en")
-        result = "Primary Care Packages";
+        return "Primary Care Packages";
       else
-        result = "Gói Điều Trị Ban Đầu";
-    // @ts-ignore
+        return "Gói Điều Trị Ban Đầu";
     case "on_going_care_package":
       if (locale === "en")
-        result = "On-Going Care Packages";
+        return "On-Going Care Packages";
       else
-        result = "Gói Quản Lý Bệnh Mạn Tính";
-    // @ts-ignore
+        return "Gói Quản Lý Bệnh Mạn Tính";
     case "wellness_package":
       if (locale === "en")
-        result = "Wellness Packages";
+        return "Wellness Packages";
       else
-        result = "Gói Sức Khoẻ Toàn Diện";
+        return "Gói Sức Khoẻ Toàn Diện";
     case "gene_examination_package":
       if (locale === "en")
-        result = "Gene Examination Packages";
+        return "Gene Examination Packages";
       else
-        result = "Gói Xét Nghiệm Di Truyền";
+        return "Gói Xét Nghiệm Di Truyền";
   }
-  return result;
 }
 
 function MyApp({ }: {}) {
@@ -260,59 +243,7 @@ function MyApp({ }: {}) {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                   </svg>
                 </button>
-                <div className="absolute z-10 hidden bg-grey-200 group-hover:block bg-regal-blue" style={{ width: "500px" }}>
-                  <div className="px-2 pt-2 pb-4 bg-regal-blue shadow-lg text-white">
-                    <div className="grid grid-cols-2 gap-4 md:grid-cols-2 p-5 text-lg">
-                      <div>
-                        <p className="text-xl underline underline-offset-4">
-                          {/* Dịch vụ tại phòng khám */}
-                          {tranlsate("in_clinic_service", locale ? locale : "")}
-                        </p>
-                        <Link className="p-5 text-white hover:text-slate-200" href={"/packages/cham-soc-phong-ngua"}>
-                          <p>
-                            Chăm sóc phòng ngừa
-                          </p>
-                        </Link>
-                        <Link className="p-5 text-white hover:text-slate-200" href={"/packages/dieu-tri-ban-dau"}>
-                          <p>
-                            Điều trị ban đầu
-                          </p>
-                        </Link>
-                        <Link className="p-5 text-white hover:text-slate-200" href={"/packages/quan-ly-benh-man-tinh"}>
-                          <p>
-                            Quản lý bệnh mãn tính
-                          </p>
-                        </Link>
-                        <Link className="p-5 text-white hover:text-slate-200" href={"/packages/suc-khoe-toan-dien"}>
-                          <p>
-                            Sức khoẻ toàn diện
-                          </p>
-                        </Link>
-                      </div>
-                      <div>
-                        <p className="text-xl underline">
-                          Dịch vụ tại nhà
-                        </p>
-                        <Link className="p-5 text-white hover:text-slate-200" href={"/packages/cham-soc-tai-nha"}>
-                          <p>
-                            Chăm sóc tại nhà
-                          </p>
-                        </Link>
-                        <Link className="p-5 text-white hover:text-slate-200" href={"/packages/cham-soc-tu-xa"}>
-                          <p>
-                            Chăm sóc từ xa
-                          </p>
-                        </Link>
-                        <p>
-                          Khách hàng tại Việt Nam
-                        </p>
-                        <p>
-                          Việt kiều ở nước ngoài
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                
               </div>
             </div>
             {/* <Link href={"/"}>

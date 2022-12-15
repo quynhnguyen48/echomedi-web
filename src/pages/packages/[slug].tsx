@@ -9,6 +9,22 @@ import { Main } from '@/templates/Main';
 import { PackagesApi } from '@/models/package';
 import Accordion from '@/templates/Accordion';
 import { AppConfig } from '@/utils/AppConfig';
+import { useRouter } from 'next/router'
+
+const tranlsate = (s: string, locale: string | undefined) => {
+  switch (s) {
+    case "buy_now":
+      if (locale === "en")
+        return "Buy now";
+      else
+        return "Mua ngay";
+    case "learn_more":
+      if (locale === "en")
+        return "Learn more";
+      else 
+        return "Tìm hiểu thêm";        
+  }
+}
 
 type IBlogUrl = {
   slug: string;
@@ -54,6 +70,8 @@ export const getStaticProps: GetStaticProps<IBlogUrl, IBlogUrl> = async ({
 };
 
 const Blog = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
+  let { locale } = useRouter();
+  locale = locale ?? "";
   return (
     <Main meta={<Meta title={props.label} description="Lorem ipsum" />}>
       <div className="pb-8 relative h-96">
@@ -87,8 +105,8 @@ const Blog = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
           <p>{sv.desc}</p>
           <div className='columns-3'>
           {sv.price && <p className='font-bold p-5'>{numberWithCommas(sv.price)}<span className='underline'>đ</span></p>}
-          {sv.show_buy_btn && <div className='p-5'><button>Mua ngay</button></div>}
-          {sv.show_learn_more && <div className='p-5'><a href={"/services/" + sv.slug}>Tìm hiểu thêm</a></div>}
+          {sv.show_buy_btn && <div className='p-5'><button>{tranlsate("buy_now", locale)}</button></div>}
+          {sv.show_learn_more && <div className='p-5'><a href={"/services/" + sv.slug}>{tranlsate("learn_more", locale)}</a></div>}
           </div>
           </div>
           } />)}
